@@ -15,19 +15,7 @@ import Review from '../../../containers/Review';
 import CreateRoles from '../../../containers/CreateRole/CreateRole';
 
 import Account from '../../../containers/Account';
-//import AccountSecurity from '../../../containers/AccountSecurity';
-//import Address from '../../../containers/Address';
-//import Order from '../../../containers/Order';
-//import Users from '../../../containers/Users';
-//import Category from '../../../containers/Category';
-//import Product from '../../../containers/Product';
-//import Brand from '../../../containers/Brand';
-//import Merchant from '../../../containers/Merchant';
-//import Distributor from '../../../containers/Merchant';
 
-//import Wishlist from '../../../containers/WishList';
-
-//import AssignRole  from '../../../containers/AssignRoles/index';
 
 const Admin = props => {
   return (
@@ -40,16 +28,6 @@ const Admin = props => {
           <div className='panel-body'>
             <Switch>
               <Route exact path='/dashboard' component={Account} />
-              {/*<Route path='/dashboard/AccountSecurity' component={AccountSecurity} />
-              <Route path='/dashboard/address' component={Address} />
-              <Route path='/dashboard/products' component={Product} />
-              <Route path='/dashboard/category' component={Category} />
-              <Route path='/dashboard/brand' component={Brand} />
-              <Route path='/dashboard/users' component={Users} />
-              <Route path='/dashboard/distributor' component={Distributor} />
-              <Route path='/dashboard/orders' component={Order} />
-              <Route path='/dashboard/wishlist' component={Wishlist} />
-              <Route path='/dashboard/assignroles' component={AssignRole}/>*/}
               <Route path='/dashboard/createroles' component={CreateRoles}/>
               <Route path='/dashboard/reviews' component={Review} />
               
