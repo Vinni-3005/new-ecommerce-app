@@ -66,7 +66,9 @@ class Dashboard extends React.PureComponent {
       <>
         {normalizedRole===ROLES.Admin ? (
           <Admin user={user} permissions={roleData.permissions}/>
-        ):null}
+        ): normalizedRole === ROLES. Distributor ? (
+          <Distributor user={user} permissions={roleData.permissions}/>
+        ): null }
       </>
     )
   }

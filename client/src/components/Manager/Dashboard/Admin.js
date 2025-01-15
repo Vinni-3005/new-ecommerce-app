@@ -14,14 +14,17 @@ import AccountMenu from '../AccountMenu';
 import Page404 from '../../Common/Page404';
 import Review from '../../../containers/Review';
 import CreateRoles from '../../../containers/CreateRole/CreateRole';
-
+//import Product from '../../../containers/'
 import Account from '../../../containers/Account';
 import Category from '../../../containers/Category';
+//import Brand from '../../../containers/'
 
 const Admin = ({permissions}) => {
   const [selectedComponents, setSelectedComponents] = useState([]);
   const [gridLayout, setGridLayout] = useState('2x2');
   const componentMap = {
+    //products: <Product/>,
+    //brands:<Brand/>,
     reviews:<Review/>,
     createroles: <CreateRoles/>,
     category:<Category/>,

@@ -210,7 +210,7 @@ select option {
 .grid-item {
   position: relative; /* Ensure the close button aligns relative to this */
   border: 1px solid #ccc;
-  padding: 10px; /* Adjust for inner spacing */
+  padding: 20px; /* Adjust for inner spacing */
   border-radius: 8px;
   background-color: #f9f9f9;
   display: flex;
@@ -219,7 +219,11 @@ select option {
   align-items: stretch; 
   overflow: hidden;/* Align items to the left */
 }
-
+label {
+  margin-left: 10px;
+  display: flex;
+  align-content: space-between;
+}
 .component-name {
   margin-bottom: 10px;
   font-weight: bold;
