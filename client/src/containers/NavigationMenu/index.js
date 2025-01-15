@@ -65,7 +65,7 @@ class NavigationMenu extends React.PureComponent {
 const mapStateToProps = state => {
   return {
     isMenuOpen: state.navigation.isMenuOpen,
-    categories: state.category?.storeCategories || []
+    categories: state.category.storeCategories
   };
 };
 

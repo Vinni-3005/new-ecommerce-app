@@ -44,7 +44,7 @@ class Dashboard extends React.PureComponent {
   };
 
   render() {
-    const { user, isLoading, isMenuOpen,  toggleDashboardMenu } = this.props;
+    const { user, isLoading} = this.props;
     const {rolePermissions} = this.state;
 
     if (!rolePermissions || isLoading) {
@@ -62,9 +62,26 @@ class Dashboard extends React.PureComponent {
       return <LoadingIndicator inline/>;
     }
 
-    const menuItems = this.generateMenuItems(roleData.permissions);
-    
     return (
+      <>
+        {normalizedRole===ROLES.Admin ? (
+          <Admin user={user} permissions={roleData.permissions}/>
+        ):null}
+      </>
+    )
+  }
+}
+
+const mapStateToProps = (state) => ({ 
+  user:state.account.user,
+  isLoading:state.account.isLoading,
+});
+
+export default connect(mapStateToProps, actions)(Dashboard);
+
+    //const menuItems = this.generateMenuItems(roleData.permissions);
+    
+    /*return (
       <>
         {isDisabledMerchantAccount(user) ? (
           <DisabledMerchantAccount user={user} />
@@ -134,7 +151,7 @@ const mapStateToProps = (state) => ({
   isMenuOpen: state.dashboard.isMenuOpen,
 });
 
-export default connect(mapStateToProps,actions)(Dashboard);
+export default connect(mapStateToProps,actions)(Dashboard);*/
 
 
   

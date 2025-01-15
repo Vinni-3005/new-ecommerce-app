@@ -36,20 +36,20 @@ import Menu from '../NavigationMenu';
 import Cart from '../Cart';
 
 class Navigation extends React.PureComponent {
-  //componentDidMount() {
+  componentDidMount() {
     //this.props.fetchStoreBrands();
-    //this.props.fetchStoreCategories();
-  //}
+    this.props.fetchStoreCategories();
+  }
 
   //toggleBrand() {
     //this.props.fetchStoreBrands();
     //this.props.toggleBrand();
   //}
 
-  //toggleMenu() {
-    //this.props.fetchStoreCategories();
-    //this.props.toggleMenu();
-  //}
+  toggleMenu() {
+    this.props.fetchStoreCategories();
+    this.props.toggleMenu();
+  }
 
   getSuggestionValue(suggestion) {
     return suggestion.name;
@@ -345,7 +345,7 @@ const mapStateToProps = state => {
     isBrandOpen: state.navigation.isBrandOpen,
     cartItems: state.cart?.cartItems || [],
     brands: state.brand?.storeBrands || [],
-    categories: state.category?.storeCategories || [],
+    categories: state.category.storeCategories,
     authenticated: state.authentication.authenticated,
     user: state.account.user,
     searchValue: state.navigation.searchValue,

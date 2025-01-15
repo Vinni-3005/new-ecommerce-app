@@ -29,7 +29,7 @@ import roleReducer from './containers/CreateRole/reducer';
 //import resetPasswordReducer from './containers/ResetPassword/reducer';
 //import usersReducer from './containers/Users/reducer';
 //import productReducer from './containers/Product/reducer';
-//import categoryReducer from './containers/Category/reducer';
+import categoryReducer from './containers/Category/reducer';
 //import brandReducer from './containers/Brand/reducer';
 //import merchantReducer from './containers/Merchant/reducer';
 //import contactReducer from './containers/Contact/reducer';
@@ -54,6 +54,7 @@ const createReducer = history =>
     shop: shopReducer,
     review: reviewReducer,
     roles : roleReducer,
+    category : categoryReducer,
 
     //cart: cartReducer,
     //newsletter: newsletterReducer,
@@ -61,7 +62,6 @@ const createReducer = history =>
     //resetPassword: resetPasswordReducer,
     //users: usersReducer,
     //product: productReducer,
-    //category: categoryReducer,
     //brand: brandReducer,
     //merchant: merchantReducer,
     //contact: contactReducer,

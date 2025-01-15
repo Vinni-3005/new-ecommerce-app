@@ -27,7 +27,7 @@ import * as createrole from './containers/CreateRole/actions';
 //import * as resetPassword from './containers/ResetPassword/actions';
 //import * as users from './containers/Users/actions';
 //import * as product from './containers/Product/actions';
-//import * as category from './containers/Category/actions';
+import * as category from './containers/Category/actions';
 //import * as brand from './containers/Brand/actions';
 //import * as merchant from './containers/Merchant/actions';
 //import * as contact from './containers/Contact/actions';
@@ -51,6 +51,7 @@ export default function mapDispatchToProps(dispatch) {
       ...shop,
       ...review,
       ...createrole,
+      ...category
 
 
       //...cart,
@@ -59,7 +60,7 @@ export default function mapDispatchToProps(dispatch) {
       //...resetPassword,
       //...users,
       //...product,
-      //...category,
+      
       //...brand,
       //...merchant,
       //...contact,
