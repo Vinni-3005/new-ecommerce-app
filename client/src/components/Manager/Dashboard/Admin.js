@@ -21,7 +21,7 @@ import Category from '../../../containers/Category';
 
 const Admin = ({permissions}) => {
   const [selectedComponents, setSelectedComponents] = useState([]);
-  const [gridLayout, setGridLayout] = useState('2x2');
+  const [selectedLayout, setSelectedLayout] = useState('block');
   const componentMap = {
     //products: <Product/>,
     //brands:<Brand/>,
@@ -29,6 +29,25 @@ const Admin = ({permissions}) => {
     createroles: <CreateRoles/>,
     category:<Category/>,
   };
+
+  const layouts = [
+    {
+      id :'block',
+      name:'Block Grid',
+    },
+    {
+      id:'column',
+      name:'Column Grid',
+    },
+    {
+      id:'modular',
+      name:'Modular Grid',
+    },
+    {
+      id:'hierarchial',
+      name:'Hierarchial Grid',
+    }
+  ];
 
 
 
@@ -43,9 +62,14 @@ const  removeComponent = (component) => {
   document.querySelector(`input[value="${component}"]`).checked = false;
 };
 
+
+const handleLayoutSelect =(layout) => {
+  setSelectedLayout(layout);
+};
+
 return (
   <div className="admin">
-    {/*layout selector*/}
+    {/*{/*layout selector}
     <Row>
       <Col xs="12">
         <label htmlFor='grid-layout'>Select Grid layout:</label>
@@ -59,8 +83,30 @@ return (
           <option value="3x3">3x3 Grid</option>
         </select>
       </Col>
-    </Row>
+    </Row>*/}
 
+    {/*Layout selector */}
+    <Row>
+      <Col xs='12'>
+        <h3>Select Grid Layout</h3>
+        <div className="layout-options">
+          {layouts.map((layout) => {
+            console.log('Rendering layout:', layout); // Debug log
+            //console.log(`Grid applied: grid-${selectedLayout}`);
+            return (
+            <div
+              key={layout.id}
+              className={`layout-card ${selectedLayout === layout.id ? 'selected' : ''}`}
+              onClick={() => setSelectedLayout(layout.id)}
+            >
+              <h4>{layout.name}</h4>
+              
+            </div>
+            );
+          })}
+        </div>
+      </Col>
+    </Row>
     {/*permissions as checkboxes*/}
     <Row>
       <Col xs="12"> 
@@ -72,6 +118,7 @@ return (
               type="checkbox"
               value={permission}
               onChange={() => handleCheckboxChange(permission)}
+              style={{marginRight:'10px'}}
             />
             {permission}
           </label>
@@ -81,14 +128,17 @@ return (
 
     <Row>
       <Col xs="12">
-        <div className={`grid-container grid-${gridLayout}`}>
-          {selectedComponents.map((component) => (
-            <div key={component} className='grid-item'>
+        <div className={`grid-container ${selectedLayout}`}>
+         
+          {selectedComponents.map((component) => (   
+            
+            <div key={component} className='grid-item'>  
+                         
               <FaTimes className="close-icon" onClick={() => removeComponent(component)}/>
               <span className='component-name'>{component}</span>
-              <div className="component-content">{componentMap[component]}</div>
+              
+              <div className="component-content">{componentMap[component]}</div>              
             </div>
-
           ))}
 
         </div>

@@ -194,52 +194,93 @@ select option {
 
 
 /* new ecommerce app styles*/
+
+/* Layout Selector */
+.layout-options {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.layout-card {
+  cursor: pointer;
+  border: 2px solid transparent;
+  padding: 15px;
+  text-align: center;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  transition: 0.3s;
+  width: 150px;
+}
+
+.layout-card:hover,
+.layout-card.selected {
+  border-color: blue;
+  background-color: #e6f7ff;
+}
+
+/* Grid Layouts */
 .grid-container {
+  margin-top:20px;
   display: grid;
-  gap: 10px;
+  gap: 20px;
 }
 
-.grid-2x2 {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.grid-3x3 {
+.grid-container.block {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.grid-item {
-  position: relative; /* Ensure the close button aligns relative to this */
-  border: 1px solid #ccc;
-  padding: 20px; /* Adjust for inner spacing */
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  display: flex;
-  flex-direction: column; /* Stack content vertically */
-  justify-content: flex-start; /* Align items at the top */
-  align-items: stretch; 
-  overflow: hidden;/* Align items to the left */
+.grid-container.column {
+  grid-template-columns: 1fr 1fr;
 }
+
+.grid-container.modular {
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: repeat(2, auto);
+}
+
+.grid-container.hierarchical {
+  grid-template-areas:
+    'a a b'
+    'c d d';
+}
+
+.grid-item {
+  position: relative;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background: #fff;
+  text-align: center;
+}
+
+.grid-container.hierarchical .grid-item:nth-child(1) {
+  grid-area: a;
+}
+
+.grid-container.hierarchical .grid-item:nth-child(2) {
+  grid-area: b;
+}
+
+.grid-container.hierarchical .grid-item:nth-child(3) {
+  grid-area: c;
+}
+
+.grid-container.hierarchical .grid-item:nth-child(4) {
+  grid-area: d;
+}
+
+.close-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
 label {
   margin-left: 10px;
   display: flex;
   align-content: space-between;
-}
-.component-name {
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-.close-icon {
-  position: absolute; /* Position it relative to the parent grid-item */
-  top: 5px; /* Align it to the top */
-  right: 5px; /* Align it to the right */
-  cursor: pointer; /* Change the cursor to pointer */
-  color: black; /* Set the icon color */
-  font-size: 16px; /* Adjust the icon size */
-  z-index: 1; /* Ensure it stays above the content */
-}
-
-.component-content {
-  margin-top: 10px; /* Add spacing below the component name */
 }
 
 
