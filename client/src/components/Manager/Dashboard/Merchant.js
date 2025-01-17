@@ -6,59 +6,99 @@
 
 import React, {useState} from 'react';
 
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
+import { FaTimes } from 'react-icons/fa';
 
 import AccountMenu from '../AccountMenu';
 import Page404 from '../../Common/Page404';
-import Reviews from '../../../containers/Review';
+import Review from '../../../containers/Review';
 
 import Account from '../../../containers/Account';
+import CreateRoles from '../../../containers/CreateRole/CreateRole';
+import Category from '../../../containers/Category';
 //import AccountSecurity from '../../../containers/AccountSecurity';
 //import Address from '../../../containers/Address';
 //import Product from '../../../containers/Product';
-//import Category from '../../../containers/Category';
+//
 //import Brand from '../../../containers/Brand';
 //import Order from '../../../containers/Order';
 //import Wishlist from '../../../containers/WishList';
 
 const Distributor = ({permissions}) => {
-  const [selectedComponents, setSelectedComponents] = useState();
-  const [gridLayout, setGridLayout] = useState('2x2');
+  const [selectedComponents, setSelectedComponents] = useState([]);
+  const [selectedLayout, setSelectedLayout] = useState('');
+  const history = useHistory();
   const componentMap = {
     reviews:<Review/>,
     createroles: <CreateRoles/>,
     category:<Category/>,
   };
 
+  const layouts = [
+    {
+      id :'block',
+      name:'Block Grid',
+    },
+    {
+      id:'column',
+      name:'Column Grid',
+    },
+    {
+      id:'modular',
+      name:'Modular Grid',
+    },
+    {
+      id:'hierarchial',
+      name:'Hierarchial Grid',
+    }
+  ];
 
 
-const handleCheckboxChange = (component) => {
-  setSelectedComponents((prev) => 
-  prev.includes(component) ? prev.filter((item) => item !== component) : [...prev, component]
-);
-};
 
-const  removeComponent = (component) => {
-  setSelectedComponents((prev) => prev.filter((item) => item !== component));
-  document.querySelector(`input[value="${component}"]`).checked = false;
-};
+  const handleCheckboxChange = (component) => {
+    setSelectedComponents((prev) => 
+    prev.includes(component) ? prev.filter((item) => item !== component) : [...prev, component]
+  );
+  
+    if (component === 'category') {
+      history.push('/dashboard/category'); // Navigate to the correct route
+    }
+  };
+
+  const  removeComponent = (component) => {
+    setSelectedComponents((prev) => prev.filter((item) => item !== component));
+    document.querySelector(`input[value="${component}"]`).checked = false;
+    if (component === 'category') {
+      history.push('/dashboard'); // Navigate to default
+    }
+  
+  };
+
+  const handleLayoutSelect =(layout) => {
+    setSelectedLayout(layout);
+  };
 
 return (
-  <div className="admin">
+  <div className="distributor">
     {/*layout selector*/}
     <Row>
-      <Col xs="12">
-        <label htmlFor='grid-layout'>Select Grid layout:</label>
-        <select 
-          id="grid-layout" 
-          value={gridLayout} 
-          onChange={(e) => setGridLayout(e.target.value)}
-        > 
-          <option value="">Select Grid</option>
-          <option value="2x2">2x2 Grid</option>
-          <option value="3x3">3x3 Grid</option>
-        </select>
+      <Col xs='12'>
+        <h3>Select Grid Layout</h3>
+          <div className="layout-options">
+            {layouts.map((layout) => {
+              return (
+              <div
+                key={layout.id}
+                className={`layout-card ${selectedLayout === layout.id ? 'selected' : ''}`}
+                onClick={() => setSelectedLayout(layout.id)}
+              >
+                <h4>{layout.name}</h4>
+                  
+              </div>
+              );
+            })}
+          </div>
       </Col>
     </Row>
 
@@ -68,30 +108,34 @@ return (
         <h3>Select Components</h3>
         {permissions.map((permission) => (
           <label key={permission} style={{ marginRight: '10px' }} >
-          
+              
             <input
               type="checkbox"
               value={permission}
               onChange={() => handleCheckboxChange(permission)}
+              style={{marginRight:'10px'}}
             />
-            {permission}
-          </label>
-        ))}
+              {permission}
+            </label>
+          ))}
       </Col>
     </Row>
 
     <Row>
       <Col xs="12">
-        <div className={`grid-container grid-${gridLayout}`}>
-          {selectedComponents.map((component) => (
-            <div key={component} className='grid-item'>
+        <div className={`grid-container ${selectedLayout}`}>
+             
+          {selectedComponents.map((component) => (   
+                
+            <div key={component} className='grid-item'>  
+                             
               <FaTimes className="close-icon" onClick={() => removeComponent(component)}/>
               <span className='component-name'>{component}</span>
-              <div className="component-content">{componentMap[component]}</div>
+                  
+              <div className="component-content">{componentMap[component]}</div>              
             </div>
-
           ))}
-
+    
         </div>
       </Col>
     </Row>

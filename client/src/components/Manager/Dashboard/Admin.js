@@ -6,10 +6,10 @@
 
 import React, {useState} from 'react';
 
-import { Switch, Route } from 'react-router-dom';
+
 import { Row, Col } from 'reactstrap';
 import { FaTimes } from 'react-icons/fa';
-
+import { Route, Switch, useHistory } from 'react-router-dom';
 import AccountMenu from '../AccountMenu';
 import Page404 from '../../Common/Page404';
 import Review from '../../../containers/Review';
@@ -17,18 +17,27 @@ import CreateRoles from '../../../containers/CreateRole/CreateRole';
 //import Product from '../../../containers/'
 import Account from '../../../containers/Account';
 import Category from '../../../containers/Category';
+
+
 //import Brand from '../../../containers/'
 
 const Admin = ({permissions}) => {
   const [selectedComponents, setSelectedComponents] = useState([]);
   const [selectedLayout, setSelectedLayout] = useState('block');
+  const history = useHistory();
+  
+
   const componentMap = {
     //products: <Product/>,
     //brands:<Brand/>,
     reviews:<Review/>,
     createroles: <CreateRoles/>,
-    category:<Category/>,
+    category:    
+      <Category/>          
   };
+
+  console.log('Permissions:', permissions);
+  console.log('Selected Components:', selectedComponents);
 
   const layouts = [
     {
@@ -55,17 +64,26 @@ const handleCheckboxChange = (component) => {
   setSelectedComponents((prev) => 
   prev.includes(component) ? prev.filter((item) => item !== component) : [...prev, component]
 );
+
+  if (component === 'category') {
+    history.push('/dashboard/category'); // Navigate to the correct route
+  }
 };
 
 const  removeComponent = (component) => {
   setSelectedComponents((prev) => prev.filter((item) => item !== component));
   document.querySelector(`input[value="${component}"]`).checked = false;
+  if (component === 'category') {
+    history.push('/dashboard'); // Navigate to default
+  }
+
 };
 
 
 const handleLayoutSelect =(layout) => {
   setSelectedLayout(layout);
 };
+
 
 return (
   <div className="admin">
@@ -91,8 +109,6 @@ return (
         <h3>Select Grid Layout</h3>
         <div className="layout-options">
           {layouts.map((layout) => {
-            console.log('Rendering layout:', layout); // Debug log
-            //console.log(`Grid applied: grid-${selectedLayout}`);
             return (
             <div
               key={layout.id}
@@ -144,6 +160,7 @@ return (
         </div>
       </Col>
     </Row>
+    
 
   </div>
 );
