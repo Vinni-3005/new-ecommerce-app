@@ -22,19 +22,23 @@ import navigationMenuReducer from './containers/NavigationMenu/reducer';
 import shopReducer from './containers/Shop/reducer';
 import reviewReducer from './containers/Review/reducer';
 import roleReducer from './containers/CreateRole/reducer';
+import categoryReducer from './containers/Category/reducer';
+import wishListReducer from './containers/WishList/reducer';
+import productReducer from './containers/Product/reducer';
+import brandReducer from './containers/Brand/reducer';
 
 //import cartReducer from './containers/Cart/reducer';
 //import newsletterReducer from './containers/Newsletter/reducer';
 //import addressReducer from './containers/Address/reducer';
 //import resetPasswordReducer from './containers/ResetPassword/reducer';
 //import usersReducer from './containers/Users/reducer';
-//import productReducer from './containers/Product/reducer';
-import categoryReducer from './containers/Category/reducer';
-//import brandReducer from './containers/Brand/reducer';
+//
+
+//
 //import merchantReducer from './containers/Merchant/reducer';
 //import contactReducer from './containers/Contact/reducer';
 //import orderReducer from './containers/Order/reducer';
-//import wishListReducer from './containers/WishList/reducer';
+//
 //import assignRoleReducer from './containers/AssignRoles/reducer';
 
 const createReducer = history =>
@@ -55,18 +59,21 @@ const createReducer = history =>
     review: reviewReducer,
     roles : roleReducer,
     category : categoryReducer,
+    wishlist: wishListReducer,
+    brand: brandReducer,
+    product: productReducer,
 
     //cart: cartReducer,
     //newsletter: newsletterReducer,
     //address: addressReducer,
     //resetPassword: resetPasswordReducer,
     //users: usersReducer,
-    //product: productReducer,
-    //brand: brandReducer,
+    //
+    //
     //merchant: merchantReducer,
     //contact: contactReducer,
     //order: orderReducer,
-    //wishlist: wishListReducer,
+    //
     //assignroles : assignRoleReducer
   });
 

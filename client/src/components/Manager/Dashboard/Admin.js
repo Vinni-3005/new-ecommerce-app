@@ -14,7 +14,7 @@ import AccountMenu from '../AccountMenu';
 import Page404 from '../../Common/Page404';
 import Review from '../../../containers/Review';
 import CreateRoles from '../../../containers/CreateRole/CreateRole';
-//import Product from '../../../containers/'
+import Product from '../../../containers/Product';
 import Account from '../../../containers/Account';
 import Category from '../../../containers/Category';
 
@@ -28,7 +28,7 @@ const Admin = ({permissions}) => {
   
 
   const componentMap = {
-    //products: <Product/>,
+    products: <Product/>,
     //brands:<Brand/>,
     reviews:<Review/>,
     createroles: <CreateRoles/>,
@@ -36,8 +36,7 @@ const Admin = ({permissions}) => {
       <Category/>          
   };
 
-  console.log('Permissions:', permissions);
-  console.log('Selected Components:', selectedComponents);
+  
 
   const layouts = [
     {
@@ -61,12 +60,17 @@ const Admin = ({permissions}) => {
 
 
 const handleCheckboxChange = (component) => {
+  
   setSelectedComponents((prev) => 
   prev.includes(component) ? prev.filter((item) => item !== component) : [...prev, component]
 );
 
+
+
   if (component === 'category') {
     history.push('/dashboard/category'); // Navigate to the correct route
+  } else if (component === 'products') {
+    history.push('/dashboard/products');
   }
 };
 
@@ -75,6 +79,8 @@ const  removeComponent = (component) => {
   document.querySelector(`input[value="${component}"]`).checked = false;
   if (component === 'category') {
     history.push('/dashboard'); // Navigate to default
+  } else if (component === 'product') {
+    history.push('/dashboard/products');
   }
 
 };

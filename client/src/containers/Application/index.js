@@ -25,11 +25,12 @@ import AuthSuccess from '../AuthSuccess';
 import Footer from '../../components/Common/Footer';
 import Page404 from '../../components/Common/Page404';
 import { CART_ITEMS } from '../../constants';
+import ProductPage from '../ProductPage';
 
 //import Sell from '../Sell';
 //import Contact from '../Contact';
 //import BrandsPage from '../BrandsPage';
-//import ProductPage from '../ProductPage';
+//
 //import OrderSuccess from '../OrderSuccess';
 //import OrderPage from '../OrderPage';
 //import MerchantSignup from '../MerchantSignup';
@@ -95,6 +96,7 @@ class Application extends React.PureComponent {
                 <Route path='/shop' component={Shop} />
                 <Route path='/auth/success' component={AuthSuccess} />
                 <Route path='/forgot-password' component={ForgotPassword} />
+                <Route path='/product/:slug' component={ProductPage} />
                 <Route path='/404' component={Page404} />
                 <Route path='*' component={Page404} />
 
@@ -102,7 +104,7 @@ class Application extends React.PureComponent {
                 {/*<Route path='/sell' component={Sell} />
                 <Route path='/contact' component={Contact} />
                 <Route path='/brands' component={BrandsPage} />
-                <Route path='/product/:slug' component={ProductPage} />
+                
                 <Route path='/order/success/:id' component={OrderSuccess} />
                 <Route path='/order/:id' component={OrderPage} /> 
                 <Route
@@ -127,7 +129,7 @@ class Application extends React.PureComponent {
 const mapStateToProps = state => {
   return {
     authenticated: state.authentication.authenticated,
-    //products: state.product.storeProducts
+    products: state.product.storeProducts
   };
 };
 

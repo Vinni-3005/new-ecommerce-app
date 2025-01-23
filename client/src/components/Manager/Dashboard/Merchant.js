@@ -17,9 +17,10 @@ import Review from '../../../containers/Review';
 import Account from '../../../containers/Account';
 import CreateRoles from '../../../containers/CreateRole/CreateRole';
 import Category from '../../../containers/Category';
+import Wishlist from '../../../containers/WishList';
+import Product from '../../../containers/Product';
 //import AccountSecurity from '../../../containers/AccountSecurity';
 //import Address from '../../../containers/Address';
-//import Product from '../../../containers/Product';
 //
 //import Brand from '../../../containers/Brand';
 //import Order from '../../../containers/Order';
@@ -30,9 +31,11 @@ const Distributor = ({permissions}) => {
   const [selectedLayout, setSelectedLayout] = useState('');
   const history = useHistory();
   const componentMap = {
+    products: <Product/>,
     reviews:<Review/>,
     createroles: <CreateRoles/>,
     category:<Category/>,
+    wishlist : <Wishlist/>,
   };
 
   const layouts = [
@@ -63,6 +66,8 @@ const Distributor = ({permissions}) => {
   
     if (component === 'category') {
       history.push('/dashboard/category'); // Navigate to the correct route
+    } else if (component === 'products') {
+      history.push('/dashboard/products');
     }
   };
 
@@ -71,6 +76,8 @@ const Distributor = ({permissions}) => {
     document.querySelector(`input[value="${component}"]`).checked = false;
     if (component === 'category') {
       history.push('/dashboard'); // Navigate to default
+    } else if ( component === 'products'){
+      history.push('/dashboard/products');
     }
   
   };

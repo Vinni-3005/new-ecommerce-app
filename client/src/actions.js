@@ -19,6 +19,10 @@ import * as menu from './containers/NavigationMenu/actions';
 import * as shop from './containers/Shop/actions';
 import * as review from './containers/Review/actions';
 import * as createrole from './containers/CreateRole/actions';
+import * as category from './containers/Category/actions';
+import * as wishlist from './containers/WishList/actions';
+import * as brand from './containers/Brand/actions';
+import * as product from './containers/Product/actions';
 
 
 //import * as cart from './containers/Cart/actions';
@@ -26,13 +30,13 @@ import * as createrole from './containers/CreateRole/actions';
 //import * as address from './containers/Address/actions';
 //import * as resetPassword from './containers/ResetPassword/actions';
 //import * as users from './containers/Users/actions';
-//import * as product from './containers/Product/actions';
-import * as category from './containers/Category/actions';
-//import * as brand from './containers/Brand/actions';
+//
+
+//
 //import * as merchant from './containers/Merchant/actions';
 //import * as contact from './containers/Contact/actions';
 //import * as order from './containers/Order/actions';
-//import * as wishlist from './containers/WishList/actions';
+//
 //import * as assignrole from './containers/AssignRoles/actions';
 
 export default function mapDispatchToProps(dispatch) {
@@ -51,7 +55,10 @@ export default function mapDispatchToProps(dispatch) {
       ...shop,
       ...review,
       ...createrole,
-      ...category
+      ...category,
+      ...wishlist,
+      ...product,
+      ...brand,
 
 
       //...cart,
@@ -59,13 +66,13 @@ export default function mapDispatchToProps(dispatch) {
       //...address,
       //...resetPassword,
       //...users,
-      //...product,
+      //
       
-      //...brand,
+      //
       //...merchant,
       //...contact,
       //...order,
-      //...wishlist,
+      //
       //...assignrole,
     },
     dispatch
