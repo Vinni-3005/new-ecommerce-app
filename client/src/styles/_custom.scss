@@ -284,7 +284,45 @@ label {
 }
 
 
+/*dark/light theme mode*/
 
+/* Light Theme */
+:root {
+  --navbar-bg: #ffffff;
+  --navbar-text: #000000 !important;
+  --icon-color: #000000;
+}
+
+/* Dark Theme */
+[data-theme='dark'] {
+  --navbar-bg: #333333;
+  --navbar-text: #ffffff !important; 
+  --icon-color: #000000;
+}
+
+/* Apply variables */
+body {
+  background-color: var(--navbar-bg);
+  color: var(--navbar-text);
+}
+
+
+
+.navbar {
+  background-color: var(--navbar-bg) !important;
+  color: var(--navbar-text) !important;
+}
+
+.theme-toggle {
+  cursor: pointer;
+  color: var(--icon-color);
+  margin-right: 16px;
+}
+
+.toggle-text {
+  color: var(--navbar-text) !important;
+
+}
 
 
 

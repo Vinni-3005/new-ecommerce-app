@@ -26,6 +26,8 @@ import {
   DropdownItem
 } from 'reactstrap';
 
+import {FaSun, FaMoon} from 'react-icons/fa';
+
 import actions from '../../actions';
 
 import Button from '../../components/Common/Button';
@@ -36,15 +38,49 @@ import Menu from '../NavigationMenu';
 import Cart from '../Cart';
 
 class Navigation extends React.PureComponent {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDarkMode: false,
+    };
+    this.toggleTheme = this.toggleTheme.bind(this);
+  }
   componentDidMount() {
-    //this.props.fetchStoreBrands();
+    this.props.fetchStoreBrands();
     this.props.fetchStoreCategories();
+
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'dark') {
+      document.body.setAttribute('data-theme', 'dark');
+      this.setState({isDarkMode:true});
+    } else {
+      document.body.setAttribute('data-theme', 'light');
+      this.setState({isDarkMode:false})
+    }
   }
 
-  //toggleBrand() {
-    //this.props.fetchStoreBrands();
-    //this.props.toggleBrand();
-  //}
+  toggleTheme() {
+    const {isDarkMode} =this.state;
+
+    if (isDarkMode) {
+      document.body.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.body.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    }
+
+    this.setState({isDarkMode:!isDarkMode});
+  }
+
+  
+
+
+  toggleBrand() {
+    this.props.fetchStoreBrands();
+    this.props.toggleBrand();
+  }
 
   toggleMenu() {
     this.props.fetchStoreCategories();
@@ -126,6 +162,8 @@ class Navigation extends React.PureComponent {
       onSuggestionsFetchRequested,
       onSuggestionsClearRequested
     } = this.props;
+
+    const {isDarkMode} = this.state;
 
     const inputProps = {
       placeholder: 'Search Products',
@@ -229,7 +267,9 @@ class Navigation extends React.PureComponent {
               // className='px-0'
             >
               <Navbar color='light' light expand='md' className='mt-1 mt-md-0'>
-                
+                <div className='theme-toggle' onClick={this.toggleTheme}>
+                  {isDarkMode ? <FaMoon size={24} /> : <FaSun size={24} />}
+                </div>
                 <CartIcon
                   className='d-none d-md-block'
                   cartItems={cartItems}
@@ -345,7 +385,7 @@ const mapStateToProps = state => {
     isCartOpen: state.navigation.isCartOpen,
     isBrandOpen: state.navigation.isBrandOpen,
     cartItems: state.cart?.cartItems || [],
-    brands: state.brand?.storeBrands || [],
+    brands: state.brand.storeBrands,
     categories: state.category.storeCategories,
     authenticated: state.authentication.authenticated,
     user: state.account.user,

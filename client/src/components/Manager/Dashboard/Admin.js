@@ -112,7 +112,7 @@ return (
     {/*Layout selector */}
     <Row>
       <Col xs='12'>
-        <h3>Select Grid Layout</h3>
+        <h3 className='toggle-text'>Select Grid Layout</h3>
         <div className="layout-options">
           {layouts.map((layout) => {
             return (
@@ -132,12 +132,12 @@ return (
     {/*permissions as checkboxes*/}
     <Row>
       <Col xs="12"> 
-        <h3>Select Components</h3>
+        <h3 className='toggle-text'>Select Components</h3>
         {permissions.map((permission) => (
-          <label key={permission} style={{ marginRight: '10px' }} >
+          <label key={permission} style={{ marginRight: '10px' }} className='toggle-text'>
           
             <input
-              type="checkbox"
+              type="checkbox"             
               value={permission}
               onChange={() => handleCheckboxChange(permission)}
               style={{marginRight:'10px'}}

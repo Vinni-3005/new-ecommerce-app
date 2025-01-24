@@ -47,11 +47,11 @@ app.use(passport.initialize());
 const authRoutes = require('./routes/api/auth');  // Importing authentication routes
 app.use('/api/auth', authRoutes); 
 
-//const brandRoutes = require('./routes/api/brand');
-//app.use('/api', brandRoutes);         //importing brand routes
+const brandRoutes = require('./routes/api/brand');
+app.use('/api', brandRoutes);         //importing brand routes
 
-//const productRoutes = require('./routes/api/product');
-//app.use('/api', productRoutes);          //impoting product api's
+const productRoutes = require('./routes/api/product');
+app.use('/api', productRoutes);          //impoting product api's
 
 const roleRoutes = require('./routes/api/roles');
 app.use('/api', roleRoutes);    //importing role routes
