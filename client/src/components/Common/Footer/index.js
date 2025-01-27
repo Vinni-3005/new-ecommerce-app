@@ -31,7 +31,7 @@ const Footer = () => {
 
   const footerLinks = infoLinks.map(item => (
     <li key={item.id} className='footer-link'>
-      <Link key={item.id} to={item.to}>
+      <Link key={item.id} to={item.to} className ='toggle-text'>
         {item.name}
       </Link>
     </li>
@@ -43,7 +43,7 @@ const Footer = () => {
         <div className='footer-content'>
           <div className='footer-block'>
             <div className='block-title'>
-              <h3 className='text-uppercase'>Customer Service</h3>
+              <h3 className='text-uppercase toggle-text' >Customer Service</h3>
             </div>
             <div className='block-content'>
               <ul>{footerLinks}</ul>
@@ -51,7 +51,7 @@ const Footer = () => {
           </div>
           <div className='footer-block'>
             <div className='block-title'>
-              <h3 className='text-uppercase'>Links</h3>
+              <h3 className='text-uppercase toggle-text'>Links</h3>
             </div>
             <div className='block-content'>
               <ul>{footerLinks}</ul>
@@ -59,13 +59,13 @@ const Footer = () => {
           </div>
           <div className='footer-block'>
             <div className='block-title'>
-              <h3 className='text-uppercase'>Newsletter</h3>
+              <h3 className='text-uppercase toggle-text' >Newsletter</h3>
               <Newsletter />
             </div>
           </div>
         </div>
         <div className='footer-copyright'>
-          <span>© {new Date().getFullYear()} MERN Store</span>
+          <span className='toggle-text'>© {new Date().getFullYear()} MERN Store</span>
         </div>
         <ul className='footer-social-item'>
           <li>
