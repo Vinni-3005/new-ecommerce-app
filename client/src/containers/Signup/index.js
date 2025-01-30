@@ -19,6 +19,7 @@ import LoadingIndicator from '../../components/Common/LoadingIndicator';
 import SignupProvider from '../../components/Common/SignupProvider';
 
 class Signup extends React.PureComponent {
+
   render() {
     const {
       authenticated,

@@ -23,6 +23,7 @@ import * as category from './containers/Category/actions';
 import * as wishlist from './containers/WishList/actions';
 import * as brand from './containers/Brand/actions';
 import * as product from './containers/Product/actions';
+import * as contact from './containers/Contact/actions';
 
 
 //import * as cart from './containers/Cart/actions';
@@ -34,7 +35,7 @@ import * as product from './containers/Product/actions';
 
 //
 //import * as merchant from './containers/Merchant/actions';
-//import * as contact from './containers/Contact/actions';
+//
 //import * as order from './containers/Order/actions';
 //
 //import * as assignrole from './containers/AssignRoles/actions';
@@ -59,6 +60,7 @@ export default function mapDispatchToProps(dispatch) {
       ...wishlist,
       ...product,
       ...brand,
+      ...contact,
 
 
       //...cart,
@@ -70,7 +72,7 @@ export default function mapDispatchToProps(dispatch) {
       
       //
       //...merchant,
-      //...contact,
+      //
       //...order,
       //
       //...assignrole,

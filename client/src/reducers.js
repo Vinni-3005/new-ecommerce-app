@@ -26,6 +26,7 @@ import categoryReducer from './containers/Category/reducer';
 import wishListReducer from './containers/WishList/reducer';
 import productReducer from './containers/Product/reducer';
 import brandReducer from './containers/Brand/reducer';
+import contactReducer from './containers/Contact/reducer';
 
 //import cartReducer from './containers/Cart/reducer';
 //import newsletterReducer from './containers/Newsletter/reducer';
@@ -36,7 +37,7 @@ import brandReducer from './containers/Brand/reducer';
 
 //
 //import merchantReducer from './containers/Merchant/reducer';
-//import contactReducer from './containers/Contact/reducer';
+//
 //import orderReducer from './containers/Order/reducer';
 //
 //import assignRoleReducer from './containers/AssignRoles/reducer';
@@ -62,6 +63,7 @@ const createReducer = history =>
     wishlist: wishListReducer,
     brand: brandReducer,
     product: productReducer,
+    contact: contactReducer,
 
     //cart: cartReducer,
     //newsletter: newsletterReducer,
@@ -71,7 +73,7 @@ const createReducer = history =>
     //
     //
     //merchant: merchantReducer,
-    //contact: contactReducer,
+    //
     //order: orderReducer,
     //
     //assignroles : assignRoleReducer

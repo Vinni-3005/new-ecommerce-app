@@ -26,9 +26,10 @@ import Footer from '../../components/Common/Footer';
 import Page404 from '../../components/Common/Page404';
 import { CART_ITEMS } from '../../constants';
 import ProductPage from '../ProductPage';
+import Contact from '../Contact';
 
 //import Sell from '../Sell';
-//import Contact from '../Contact';
+//
 //import BrandsPage from '../BrandsPage';
 //
 //import OrderSuccess from '../OrderSuccess';
@@ -99,10 +100,11 @@ class Application extends React.PureComponent {
                 <Route path='/product/:slug' component={ProductPage} />
                 <Route path='/404' component={Page404} />
                 <Route path='*' component={Page404} />
+                <Route path='/contact' component={Contact} />
 
 
                 {/*<Route path='/sell' component={Sell} />
-                <Route path='/contact' component={Contact} />
+                
                 <Route path='/brands' component={BrandsPage} />
                 
                 <Route path='/order/success/:id' component={OrderSuccess} />

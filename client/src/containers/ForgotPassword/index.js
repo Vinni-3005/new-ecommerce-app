@@ -41,6 +41,7 @@ class ForgotPassword extends React.PureComponent {
             <Col xs='12' md='6'>
               <Input
                 type={'text'}
+                className={'toggle-text'}
                 error={formErrors['email']}
                 label={'Email Address'}
                 name={'email'}
