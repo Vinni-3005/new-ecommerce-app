@@ -27,12 +27,15 @@ import wishListReducer from './containers/WishList/reducer';
 import productReducer from './containers/Product/reducer';
 import brandReducer from './containers/Brand/reducer';
 import contactReducer from './containers/Contact/reducer';
+import assignRoleReducer from './containers/AssignRoles/reducer';
+import usersReducer from './containers/Users/reducer';
+import resetPasswordReducer from './containers/ResetPassword/reducer';
 
 //import cartReducer from './containers/Cart/reducer';
 //import newsletterReducer from './containers/Newsletter/reducer';
 //import addressReducer from './containers/Address/reducer';
-//import resetPasswordReducer from './containers/ResetPassword/reducer';
-//import usersReducer from './containers/Users/reducer';
+//
+//
 //
 
 //
@@ -40,7 +43,7 @@ import contactReducer from './containers/Contact/reducer';
 //
 //import orderReducer from './containers/Order/reducer';
 //
-//import assignRoleReducer from './containers/AssignRoles/reducer';
+//
 
 const createReducer = history =>
   combineReducers({
@@ -64,19 +67,22 @@ const createReducer = history =>
     brand: brandReducer,
     product: productReducer,
     contact: contactReducer,
+    assignroles : assignRoleReducer,
+    users: usersReducer,
+    resetPassword: resetPasswordReducer,
 
     //cart: cartReducer,
     //newsletter: newsletterReducer,
     //address: addressReducer,
-    //resetPassword: resetPasswordReducer,
-    //users: usersReducer,
+    //
+    //
     //
     //
     //merchant: merchantReducer,
     //
     //order: orderReducer,
     //
-    //assignroles : assignRoleReducer
+    //
   });
 
 export default createReducer;

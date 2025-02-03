@@ -24,13 +24,15 @@ import * as wishlist from './containers/WishList/actions';
 import * as brand from './containers/Brand/actions';
 import * as product from './containers/Product/actions';
 import * as contact from './containers/Contact/actions';
-
+import * as assignrole from './containers/AssignRoles/actions';
+import * as users from './containers/Users/actions';
+import * as resetPassword from './containers/ResetPassword/actions';
 
 //import * as cart from './containers/Cart/actions';
 //import * as newsletter from './containers/Newsletter/actions';
 //import * as address from './containers/Address/actions';
-//import * as resetPassword from './containers/ResetPassword/actions';
-//import * as users from './containers/Users/actions';
+//
+//
 //
 
 //
@@ -38,7 +40,7 @@ import * as contact from './containers/Contact/actions';
 //
 //import * as order from './containers/Order/actions';
 //
-//import * as assignrole from './containers/AssignRoles/actions';
+//
 
 export default function mapDispatchToProps(dispatch) {
   return bindActionCreators(
@@ -61,13 +63,16 @@ export default function mapDispatchToProps(dispatch) {
       ...product,
       ...brand,
       ...contact,
+      ...users,
+      ...assignrole,
+      ...resetPassword,
 
 
       //...cart,
       //...newsletter,
       //...address,
-      //...resetPassword,
-      //...users,
+      //
+      //
       //
       
       //
@@ -75,7 +80,7 @@ export default function mapDispatchToProps(dispatch) {
       //
       //...order,
       //
-      //...assignrole,
+      //
     },
     dispatch
   );
