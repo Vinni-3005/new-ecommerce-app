@@ -19,10 +19,12 @@ import CreateRoles from '../../../containers/CreateRole/CreateRole';
 import Category from '../../../containers/Category';
 import Wishlist from '../../../containers/WishList';
 import Product from '../../../containers/Product';
-//import AccountSecurity from '../../../containers/AccountSecurity';
+import Brand from '../../../containers/Brand';
+import AccountSecurity from '../../../containers/AccountSecurity';
+//
 //import Address from '../../../containers/Address';
 //
-//import Brand from '../../../containers/Brand';
+//
 //import Order from '../../../containers/Order';
 //import Wishlist from '../../../containers/WishList';
 
@@ -31,7 +33,9 @@ const Distributor = ({permissions}) => {
   const [selectedLayout, setSelectedLayout] = useState('');
   const history = useHistory();
   const componentMap = {
+    AccountSecurity : <Account/>,
     products: <Product/>,
+    brands : <Brand/>,
     reviews:<Review/>,
     createroles: <CreateRoles/>,
     category:<Category/>,

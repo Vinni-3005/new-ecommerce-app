@@ -33,7 +33,7 @@ const Admin = ({permissions}) => {
 
   const componentMap = {
     AccountSecurity : <Account/>,
-    //products: <Product/>,
+    products: <Product/>,
     //brands:<Brand/>,
     //reviews:<Review/>,
     users: <Users/>,
@@ -71,25 +71,17 @@ const handleCheckboxChange = (component) => {
   setSelectedComponents((prev) => 
   prev.includes(component) ? prev.filter((item) => item !== component) : [...prev, component]
 );
-
-
-
-  if (component === 'category') {
+  if ( component === 'category') {
     history.push('/dashboard/category'); // Navigate to the correct route
-  } else if (component === 'products') {
-    history.push('/dashboard/products');
+  };
+  if ( component === 'products') {
+    history.push('/dashboard/products')
   }
 };
 
 const  removeComponent = (component) => {
   setSelectedComponents((prev) => prev.filter((item) => item !== component));
   document.querySelector(`input[value="${component}"]`).checked = false;
-  if (component === 'category') {
-    history.push('/dashboard'); // Navigate to default
-  } else if (component === 'product') {
-    history.push('/dashboard/products');
-  }
-
 };
 
 
@@ -156,6 +148,17 @@ return (
         </div>
       </Col>
     </Row>
+
+    {/* Dynamic Routing for Components
+      <Switch>
+        {selectedComponents.map((component) => (
+          <Route
+            key={component}
+            path={`/dashboard/${component}`}
+            render={() => componentMap[component] || <Page404 />}
+          />
+        ))}
+      </Switch> */}
     
 
   </div>

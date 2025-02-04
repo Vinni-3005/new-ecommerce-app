@@ -12,6 +12,8 @@ const { ROLES } = require('../../constants');
 //const { API_URL } = require('../../../client/src/constants/constant');
 
 const { API_URL } = require('../../constants/constant');
+
+//listof category
 router.post('category/list', auth, role.check(ROLES.Admin), (req, res) => {
   const name = req.body.name;
   const description = req.body.description;
@@ -99,7 +101,7 @@ router.get('/:id', async (req, res) => {
     });
   }
 });
-
+//update
 router.put('/:id', auth, role.check(ROLES.Admin), async (req, res) => {
   try {
     const categoryId = req.params.id;

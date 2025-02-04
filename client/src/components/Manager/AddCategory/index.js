@@ -56,7 +56,7 @@ const AddCategory = props => {
                 }}
               />
             </Col>
-            <Col xs='12' md='12'>
+            {/* <Col xs='12' md='12'>
               <SelectOption
                 error={formErrors['products']}
                 label={'Select Products'}
@@ -67,7 +67,7 @@ const AddCategory = props => {
                   categoryChange('products', value);
                 }}
               />
-            </Col>
+            </Col> */}
             <Col xs='12' md='12' className='my-2'>
               <Switch
                 id={'active-category'}

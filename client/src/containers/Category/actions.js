@@ -141,7 +141,7 @@ export const addCategory = () => {
         'required.description': 'Description is required.',
         'max.description':
           'Description may not be greater than 200 characters.',
-        'required.products': 'Products are required.'
+        //'required.products': 'Products are required.'
       });
 
       if (!isValid) {
@@ -199,7 +199,7 @@ export const updateCategory = () => {
         'required.description': 'Description is required.',
         'max.description':
           'Description may not be greater than 200 characters.',
-        'required.products': 'Products are required.'
+        // 'required.products': 'Products are required.'
       });
 
       if (!isValid) {
