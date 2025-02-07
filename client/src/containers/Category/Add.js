@@ -15,9 +15,9 @@ import SubPage from '../../components/Manager/SubPage';
 import Popover from '../../components/Common/Popover';
 
 class Add extends React.PureComponent {
-  //componentDidMount() {
-    //this.props.fetchProductsSelect();
-  //}
+  componentDidMount() {
+    this.props.fetchProductsSelect();
+  }
 
   render() {
     const {
@@ -49,7 +49,7 @@ class Add extends React.PureComponent {
 
 const mapStateToProps = state => {
   return {
-    products: state?.product.productsSelect || [],
+    products: state.product.productsSelect,
     categoryFormData: state.category.categoryFormData,
     formErrors: state.category.formErrors
   };

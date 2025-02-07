@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const keys = require('./keys');
 //const User = require ('../models/user');
 const { EMAIL_PROVIDER } = require('../constants');
+const rolePermission = require('./rolepermission');
 
 const { google, facebook } = keys;
 
@@ -25,6 +26,7 @@ passport.use(
     User.findById(payload.id)
       .then(user => {
         if (user) {
+          user.permissions = rolePermission[user.role] || {};
           return done(null, user);
         }
 

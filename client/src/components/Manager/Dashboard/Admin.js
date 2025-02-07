@@ -20,6 +20,7 @@ import Category from '../../../containers/Category';
 import WishList from '../../../containers/WishList';
 import Users from '../../../containers/Users';
 import AssignRole from '../../../containers/AssignRoles';
+import Brand from '../../../containers/Brand';
 
 
 
@@ -34,8 +35,8 @@ const Admin = ({permissions}) => {
   const componentMap = {
     AccountSecurity : <Account/>,
     products: <Product/>,
-    //brands:<Brand/>,
-    //reviews:<Review/>,
+    brands:<Brand/>,
+    reviews:<Review/>,
     users: <Users/>,
     category: <Category/>,   
     wishlist: <WishList/>,
@@ -76,6 +77,9 @@ const handleCheckboxChange = (component) => {
   };
   if ( component === 'products') {
     history.push('/dashboard/products')
+  };
+  if ( component === 'brands') {
+    history.push('/dashboard/brands')
   }
 };
 

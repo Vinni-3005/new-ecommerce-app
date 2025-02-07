@@ -8,9 +8,15 @@ const keys = require('./config/keys');
 const routes = require('./routes');
 const socket = require('./socket');
 const setupDB = require('./utils/db');
+const auth = require('./middleware/auth');
+const role = require('./middleware/role');
+//const rolePermission = require('./config/rolepermission');
+//const checkPermission = require('./middleware/checkpermission');
 
 const { port } = keys;
 const app = express();
+
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -44,6 +50,12 @@ setupDB();
 require('./config/passport')(app);
 app.use(passport.initialize());
 
+
+
+
+// Now load protected routes
+//app.use("/products", role.check("Admin"), checkPermission("products", "add"));
+
 const authRoutes = require('./routes/api/auth');  // Importing authentication routes
 app.use('/api/auth', authRoutes); 
 
@@ -58,6 +70,8 @@ app.use('/api', roleRoutes);    //importing role routes
 
 //const assignRolesRoutes = require('./routes/api/assignroles');
 //app.use('/api', assignRolesRoutes);
+
+// Attach permissions middleware AFTER authentication
 
 
 

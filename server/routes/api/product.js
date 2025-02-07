@@ -20,6 +20,7 @@ const { ROLES } = require('../../constants');
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 const { API_URL } = require('../../constants/constant');
+const checkPermission = require('../../middleware/checkpermission');
 //const { API_URL } = require('../../../client/src/constants/constant');
 // fetch product slug api
 router.get('/item/:slug', async (req, res) => {
@@ -180,7 +181,8 @@ router.get('/brand/list/select', auth, async (req, res) => {
 router.post(
   '/add',
   auth,
-  role.check( ROLES.Admin, ROLES.Distributor),
+  role.check( 'Admin'), 
+  checkPermission("products", "add"),
   upload.single('image'),
   async (req, res) => {
     try {
@@ -252,7 +254,7 @@ router.post(
 router.get(
   '/',
   auth,
-  role.check(ROLES.Admin, ROLES.Distributor),
+  role.check('Admin','Distributor'),
   async (req, res) => {
     try {
       let products = [];
@@ -298,7 +300,7 @@ router.get(
 router.get(
   '/product/:id',
   auth,
-  role.check(ROLES.Admin, ROLES.Distributor),
+  role.check('Admin', 'Distributor'),
   async (req, res) => {
     try {
       const productId = req.params.id;
@@ -342,10 +344,12 @@ router.get(
   }
 );
 
+
+//update product api
 router.put(
   '/:id',
   auth,
-  role.check(ROLES.Admin, ROLES.Distributor),
+  role.check('Admin', ROLES.Distributor),
   async (req, res) => {
     try {
       const productId = req.params.id;
@@ -379,10 +383,12 @@ router.put(
   }
 );
 
+
+//active product api
 router.put(
   '/:id/active',
   auth,
-  role.check(ROLES.Admin, ROLES.Distributor),
+  role.check('Admin', ROLES.Distributor),
   async (req, res) => {
     try {
       const productId = req.params.id;
@@ -405,10 +411,12 @@ router.put(
   }
 );
 
+
+//delete product api
 router.delete(
   '/delete/:id',
   auth,
-  role.check(ROLES.Admin, ROLES.Distributor),
+  checkPermission("products", "delete"),
   async (req, res) => {
     try {
       const product = await Product.deleteOne({ _id: req.params.id });

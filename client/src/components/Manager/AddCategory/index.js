@@ -68,7 +68,7 @@ const AddCategory = props => {
                 }}
               />
             </Col> */}
-            <Col xs='12' md='12' className='my-2'>
+            {/* <Col xs='12' md='12' className='my-2'>
               <Switch
                 id={'active-category'}
                 name={'isActive'}
@@ -76,7 +76,7 @@ const AddCategory = props => {
                 checked={categoryFormData.isActive}
                 toggleCheckboxChange={value => categoryChange('isActive', value)}
               />
-            </Col>
+            </Col> */}
           </Row>
           <hr />
           <div className='add-category-actions'>

@@ -12,6 +12,7 @@ const { ROLES } = require('../../constants');
 //const { API_URL } = require('../../../client/src/constants/constant');
 
 const { API_URL } = require('../../constants/constant');
+const checkPermission = require('../../middleware/checkpermission');
 
 //listof category
 router.post('category/list', auth, role.check(ROLES.Admin), (req, res) => {
@@ -101,8 +102,11 @@ router.get('/:id', async (req, res) => {
     });
   }
 });
-//update
-router.put('/:id', auth, role.check(ROLES.Admin), async (req, res) => {
+//update category api 
+router.put('/:id', auth, 
+  //role.check('Admin'), 
+  checkPermission("category", "edit"),
+  async (req, res) => {
   try {
     const categoryId = req.params.id;
     const update = req.body.category;
@@ -132,7 +136,9 @@ router.put('/:id', auth, role.check(ROLES.Admin), async (req, res) => {
   }
 });
 
-router.put('/:id/active', auth, role.check(ROLES.Admin), async (req, res) => {
+//update active category api
+router.put('/:id/active', auth, role.check('Admin'),
+async (req, res) => {
   try {
     const categoryId = req.params.id;
     const update = req.body.category;
@@ -166,7 +172,8 @@ router.put('/:id/active', auth, role.check(ROLES.Admin), async (req, res) => {
 router.delete(
   '/delete/:id',
   auth,
-  role.check(ROLES.Admin),
+  role.check('Admin'),
+  checkPermission("category", "delete"),
   async (req, res) => {
     try {
       const product = await Category.deleteOne({ _id: req.params.id });

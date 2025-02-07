@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Role = require('../../models/roles');
+const auth = require('../../middleware/auth');
 
 // Create or Update Role
-router.post('/roles', async (req, res) => {
+router.post('/roles',async (req, res) => {
   const { roleName, permissions } = req.body;
 
   try {
@@ -33,7 +34,7 @@ router.post('/roles', async (req, res) => {
 });
 
 // Update Permissions of Existing Role
-router.put('/roles/:roleName', async (req, res) => {
+router.put('/roles/:roleName',async (req, res) => {
   const { roleName } = req.params;
   const { permissions } = req.body;
 
@@ -57,7 +58,7 @@ router.put('/roles/:roleName', async (req, res) => {
 });
 
 // Get all roles
-router.get('/roles', async (req, res) => {
+router.get('/roles',async (req, res) => {
   try {
     const roles = await Role.find();
     res.json(roles);
@@ -68,7 +69,7 @@ router.get('/roles', async (req, res) => {
 });
 
 // Get specific role by name
-router.get('/roles/:roleName', async (req, res) => {
+router.get('/roles/:roleName',async (req, res) => {
   const { roleName } = req.params;
 
   try {

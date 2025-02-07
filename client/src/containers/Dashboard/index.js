@@ -27,14 +27,26 @@ class Dashboard extends React.PureComponent {
   state = {
     rolePermissions: null,
   };
-  componentDidMount() {
-    this.props.fetchProfile();
+  async componentDidMount() {
+    await this.props.fetchProfile();
     this.fetchRolePermissions();
   }
 
   fetchRolePermissions = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/roles');
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://localhost:3000/api/roles', {
+        headers: {
+          Authorization : `Bearer ${token}`,
+        }
+      });
+
+      if (!response.ok) {
+        if(response.status === 401){
+            console.error("Unauthorized");
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
       this.setState({rolePermissions: data});
       console.log('Fetched Role Permissions:', data);

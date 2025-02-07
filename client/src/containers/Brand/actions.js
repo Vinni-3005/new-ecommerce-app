@@ -59,7 +59,7 @@ export const fetchStoreBrands = () => {
         const token = localStorage.getItem('token') // retrieve the token
         const response = await axios.get(`${API_URL}/brands` , {
           headers: {
-            Authorization: `Bearer ${'token'}` // Include the token in the header
+            Authorization: `Bearer ${token}` // Include the token in the header
           }
         });
           
