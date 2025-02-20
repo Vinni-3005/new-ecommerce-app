@@ -10,8 +10,8 @@ const socket = require('./socket');
 const setupDB = require('./utils/db');
 const auth = require('./middleware/auth');
 const role = require('./middleware/role');
-//const rolePermission = require('./config/rolepermission');
-//const checkPermission = require('./middleware/checkpermission');
+const rolePermission = require('./config/rolepermission');
+const checkPermission = require('./middleware/checkpermission');
 
 const { port } = keys;
 const app = express();

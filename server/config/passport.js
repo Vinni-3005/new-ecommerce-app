@@ -26,7 +26,7 @@ passport.use(
     User.findById(payload.id)
       .then(user => {
         if (user) {
-          user.permissions = rolePermission[user.role] || {};
+          
           return done(null, user);
         }
 

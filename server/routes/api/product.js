@@ -182,7 +182,7 @@ router.post(
   '/add',
   auth,
   role.check( 'Admin'), 
-  checkPermission("products", "add"),
+  checkPermission,
   upload.single('image'),
   async (req, res) => {
     try {
@@ -416,7 +416,7 @@ router.put(
 router.delete(
   '/delete/:id',
   auth,
-  checkPermission("products", "delete"),
+  checkPermission,
   async (req, res) => {
     try {
       const product = await Product.deleteOne({ _id: req.params.id });

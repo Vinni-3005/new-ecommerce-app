@@ -5,6 +5,7 @@ const passport = require('passport');
 // Bring in Models & Utils
 const Category = require('../../models/category');
 const auth = require('../../middleware/auth');
+const checkPermission = require('../../middleware/checkpermission')
 const role = require('../../middleware/role');
 const store = require('../../utils/store');
 const { ROLES } = require('../../constants');
@@ -12,7 +13,7 @@ const { ROLES } = require('../../constants');
 //const { API_URL } = require('../../../client/src/constants/constant');
 
 const { API_URL } = require('../../constants/constant');
-const checkPermission = require('../../middleware/checkpermission');
+
 
 //listof category
 router.post('category/list', auth, role.check(ROLES.Admin), (req, res) => {
@@ -103,9 +104,9 @@ router.get('/:id', async (req, res) => {
   }
 });
 //update category api 
-router.put('/:id', auth, 
-  //role.check('Admin'), 
-  checkPermission("category", "edit"),
+router.put('/:id', 
+  auth,  
+  checkPermission,
   async (req, res) => {
   try {
     const categoryId = req.params.id;
@@ -172,8 +173,7 @@ async (req, res) => {
 router.delete(
   '/delete/:id',
   auth,
-  role.check('Admin'),
-  checkPermission("category", "delete"),
+  checkPermission,
   async (req, res) => {
     try {
       const product = await Category.deleteOne({ _id: req.params.id });

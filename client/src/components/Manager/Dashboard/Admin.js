@@ -41,7 +41,7 @@ const Admin = ({permissions}) => {
     category: <Category/>,   
     wishlist: <WishList/>,
     createroles: <CreateRoles/>,  
-    assignroles: <AssignRole/>  
+    assignroles: <AssignRole/>
   };
 
   

@@ -11,8 +11,9 @@ const role = require('../../middleware/role');
 const store = require('../../utils/store');
 const { ROLES, MERCHANT_STATUS } = require('../../constants');
 const {API_URL} = require('../../constants/constant');
+const checkPermission = require('../../middleware/checkpermission');
 
-router.post('/add', auth, role.check('Admin'), async (req, res) => {
+router.post('/add', auth, checkPermission, async (req, res) => {
   try {
     const name = req.body.name;
     const description = req.body.description;
@@ -148,7 +149,8 @@ router.get(
 router.put(
   '/:id',
   auth,
-  role.check('Admin', 'Merchant'),
+  checkPermission,
+  role.check('Admin','Distributor'),
   async (req, res) => {
     try {
       const brandId = req.params.id;
@@ -215,7 +217,8 @@ router.put(
 router.delete(
   '/delete/:id',
   auth,
-  role.check('Admin'),
+  checkPermission,
+  role.check('Admin','Distributor'),
   async (req, res) => {
     try {
       const brandId = req.params.id;
