@@ -27,6 +27,7 @@ import * as contact from './containers/Contact/actions';
 import * as assignrole from './containers/AssignRoles/actions';
 import * as users from './containers/Users/actions';
 import * as resetPassword from './containers/ResetPassword/actions';
+import * as ModifyRole from './containers/ModifyRole/actions';
 
 //import * as cart from './containers/Cart/actions';
 //import * as newsletter from './containers/Newsletter/actions';
@@ -66,6 +67,7 @@ export default function mapDispatchToProps(dispatch) {
       ...users,
       ...assignrole,
       ...resetPassword,
+      ...ModifyRole,
 
 
       //...cart,

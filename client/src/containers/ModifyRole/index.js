@@ -1,49 +1,89 @@
-// import React, {useEffect, useState} from "react";
-// import {useDispatch, useSelector} from "react-redux";
-// import {fetchRoles, fetchApiEndpoints, updateRolePermissions} from "./actions";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPermissions } from "./actions";
+import { fetchRolesData } from "../CreateRole/actions";
 
-// const ModifyRole () => {
-//     const dispatch = useDispatch();
-//     const {roles, apiEndpoints, loading} = useSelector((state) => state.modifyRole);
-//     const [selectedRole, setSelectedRole] = useState("");
-//     const [apiPermissions, setApiPermissions] = useState([]);
+const ModifyRole = () => {
+  const dispatch = useDispatch();
+  const { permissions, loading, error } = useSelector((state) => state.modifyRole);
+  const roles = useSelector((state) => state.roles.roles || []); // Fetch roles
 
-//     //fetch roles and API endpoints on mount
-//     useEffect(() => {
-//         dispatch(fetchRoles());
-//         dispatch(fetchApiEndpoints());
-//     }, [dispatch]);
+  const [selectedRole, setSelectedRole] = useState("");
+  const [rolePermissions, setRolePermissions] = useState({});
 
-//     //fetch selected role permissions
-//     useEffect ( () => {
-//         if (selectedRole) {
-//             const roleData = roles.find((role) => role.roleName === selectedRole);
-//             setApiPermissions(roleData?.apiPermissions || []);
-//         }
-//     },[selectedRole, roles]);
+  useEffect(() => {
+    dispatch(fetchRolesData()); // Load roles on mount
+  }, [dispatch]);
 
-//     //toggle API permissions
-//     const togglePermission = (endpoint) => {
-//         setApiPermissions( (prev) => 
-//             prev.includes(endpoint) 
-//                 ? prev.filter((p) => p !== endpoint)
-//                 : [...prev,endpoint]
-//         );
-//     };
+  useEffect(() => {
+    if (selectedRole) {
+      dispatch(fetchPermissions(selectedRole)); // Fetch API permissions when role is selected
+    }
+  }, [selectedRole, dispatch]);
 
-//     //save permissions
-//     const savePermissions = () => {
-//         dispatch(updateRolePermissions(selectedRole,apiPermissions))
-//     };
+  useEffect(() => {
+    // Convert API permissions array into an object with boolean values for checkboxes
+    const permissionsMap = {};
+    permissions.forEach((endpoint) => {
+      permissionsMap[endpoint] = true; // Assume all fetched endpoints are enabled
+    });
+    setRolePermissions(permissionsMap);
+  }, [permissions]);
 
-//     return (
-//         <div className='p-6'>
-//             <h2>Modify Role API permissions</h2>
-//             {/*Role permissions*/}
-//             <select>
-//                 <option>Select a Role</option>
-//                 <
-//             </select>
-//         </div>
-//     )
-// }
+  const renderRoleOptions = () => {
+    return roles.length > 0 ? (
+      roles.map((role, index) => (
+        <option key={index} value={role.roleName}>
+          {role.roleName || "Unnamed Role"}
+        </option>
+      ))
+    ) : (
+      <option key="no-roles" disabled>
+        No roles available
+      </option>
+    );
+  };
+
+  // Handle toggle switch
+  const handleToggle = (endpoint) => {
+    setRolePermissions((prevPermissions) => ({
+      ...prevPermissions,
+      [endpoint]: !prevPermissions[endpoint], // Toggle value
+    }));
+  };
+
+  return (
+    <div className="modify-role">
+      <h2>Modify Role API Permissions</h2>
+
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      {/* Role Selection Dropdown */}
+      <label>Select Role:</label>
+      <select onChange={(e) => setSelectedRole(e.target.value)} value={selectedRole}>
+        <option value="">-- Select Role --</option>
+        {renderRoleOptions()}
+      </select>
+
+      {/* Permissions List */}
+      {selectedRole && (
+        <div className="permissions-list">
+          <h3>API Permissions for {selectedRole}</h3>
+          {Object.keys(rolePermissions).map((endpoint) => (
+            <div key={endpoint} className="permission-item">
+              <span>{endpoint}</span>
+              <input
+                type="checkbox"
+                checked={rolePermissions[endpoint] || false}
+                onChange={() => handleToggle(endpoint)}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ModifyRole;

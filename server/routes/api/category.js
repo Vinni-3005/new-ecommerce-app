@@ -5,7 +5,7 @@ const passport = require('passport');
 // Bring in Models & Utils
 const Category = require('../../models/category');
 const auth = require('../../middleware/auth');
-const checkPermission = require('../../middleware/checkpermission')
+//const checkPermission = require('../../middleware/checkpermission')
 const role = require('../../middleware/role');
 const store = require('../../utils/store');
 const { ROLES } = require('../../constants');
@@ -16,7 +16,7 @@ const { API_URL } = require('../../constants/constant');
 
 
 //listof category
-router.post('category/list', auth, role.check(ROLES.Admin), (req, res) => {
+router.post('category/list', auth, role.check('Admin'), (req, res) => {
   const name = req.body.name;
   const description = req.body.description;
   const products = req.body.products;
@@ -106,8 +106,11 @@ router.get('/:id', async (req, res) => {
 //update category api 
 router.put('/:id', 
   auth,  
-  checkPermission,
+  role.check('Admin'),
   async (req, res) => {
+    console.log("PUT /api/category/:id called");  // Debugging
+    console.log("User:", req.user);  // Debugging
+    console.log("Request Body:", req.body);  // Debugging
   try {
     const categoryId = req.params.id;
     const update = req.body.category;
@@ -173,7 +176,7 @@ async (req, res) => {
 router.delete(
   '/delete/:id',
   auth,
-  checkPermission,
+  role.check('Admin'),
   async (req, res) => {
     try {
       const product = await Category.deleteOne({ _id: req.params.id });

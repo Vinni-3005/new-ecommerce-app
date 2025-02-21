@@ -30,6 +30,7 @@ import contactReducer from './containers/Contact/reducer';
 import assignRoleReducer from './containers/AssignRoles/reducer';
 import usersReducer from './containers/Users/reducer';
 import resetPasswordReducer from './containers/ResetPassword/reducer';
+import modifyRoleReducer from './containers/ModifyRole/reducer';
 
 //import cartReducer from './containers/Cart/reducer';
 //import newsletterReducer from './containers/Newsletter/reducer';
@@ -70,6 +71,7 @@ const createReducer = history =>
     assignroles : assignRoleReducer,
     users: usersReducer,
     resetPassword: resetPasswordReducer,
+    modifyRole: modifyRoleReducer,
 
     //cart: cartReducer,
     //newsletter: newsletterReducer,

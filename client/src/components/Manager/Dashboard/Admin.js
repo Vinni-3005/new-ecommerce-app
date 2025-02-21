@@ -21,6 +21,7 @@ import WishList from '../../../containers/WishList';
 import Users from '../../../containers/Users';
 import AssignRole from '../../../containers/AssignRoles';
 import Brand from '../../../containers/Brand';
+import ModifyRole from '../../../containers/ModifyRole';
 
 
 
@@ -41,7 +42,9 @@ const Admin = ({permissions}) => {
     category: <Category/>,   
     wishlist: <WishList/>,
     createroles: <CreateRoles/>,  
-    assignroles: <AssignRole/>
+    assignroles: <AssignRole/>,
+    ModifyRole: <ModifyRole/>,
+
   };
 
   

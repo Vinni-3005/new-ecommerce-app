@@ -20,7 +20,7 @@ const { ROLES } = require('../../constants');
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 const { API_URL } = require('../../constants/constant');
-const checkPermission = require('../../middleware/checkpermission');
+//const checkPermission = require('../../middleware/checkpermission');
 //const { API_URL } = require('../../../client/src/constants/constant');
 // fetch product slug api
 router.get('/item/:slug', async (req, res) => {
@@ -182,7 +182,6 @@ router.post(
   '/add',
   auth,
   role.check( 'Admin'), 
-  checkPermission,
   upload.single('image'),
   async (req, res) => {
     try {
@@ -416,7 +415,7 @@ router.put(
 router.delete(
   '/delete/:id',
   auth,
-  checkPermission,
+  role.check('Admin'),
   async (req, res) => {
     try {
       const product = await Product.deleteOne({ _id: req.params.id });

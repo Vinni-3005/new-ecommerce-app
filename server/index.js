@@ -10,12 +10,11 @@ const socket = require('./socket');
 const setupDB = require('./utils/db');
 const auth = require('./middleware/auth');
 const role = require('./middleware/role');
-const rolePermission = require('./config/rolepermission');
-const checkPermission = require('./middleware/checkpermission');
+
+const apiendpoints = require('./routes/api/apiendpoints');
 
 const { port } = keys;
 const app = express();
-
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -55,6 +54,8 @@ app.use(passport.initialize());
 
 // Now load protected routes
 //app.use("/products", role.check("Admin"), checkPermission("products", "add"));
+const apiendpointsRoutes = require('./routes/api/apiendpoints');
+app.use('/api', apiendpointsRoutes);
 
 const authRoutes = require('./routes/api/auth');  // Importing authentication routes
 app.use('/api/auth', authRoutes); 

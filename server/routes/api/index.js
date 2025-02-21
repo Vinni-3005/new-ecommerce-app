@@ -15,6 +15,7 @@ const reviewRoutes = require('./review');
 const wishlistRoutes = require('./wishlist');
 const roleRoutes = require('./roles');
 const assignRolesRoutes = require('./assignroles');
+const apiendpointsRoutes = require('./apiendpoints');
 
 // auth routes
 router.use('/auth', authRoutes);
@@ -60,5 +61,7 @@ router.use('/roles', roleRoutes);
 
 //assign roles routes
 router.use('/assignroles', assignRolesRoutes);
+
+router.use('./apiendpoints', apiendpointsRoutes);
 
 module.exports = router;

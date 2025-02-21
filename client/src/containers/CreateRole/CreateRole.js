@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addRole, fetchRolesData, editRole, deleteRole } from './actions';
 ///import EditRole from './Edit';
 import {useHistory} from 'react-router-dom';
+import ModifyRole from '../ModifyRole';
 
 const CreateRole = () => {
   const [roleName, setRoleName] = useState('');
@@ -22,6 +23,7 @@ const CreateRole = () => {
     wishlist: false,
     createroles: false,
     assignroles: false,
+    ModifyRole:false,
   });
   const [editingRole, setEditingRole] = useState(null); // For editing state
 
@@ -76,6 +78,7 @@ const CreateRole = () => {
       wishlist: false,
       createroles: false,
       assignroles: false,
+      ModifyRole:false,
     });
   };
 

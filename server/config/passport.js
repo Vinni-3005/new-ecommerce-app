@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const keys = require('./keys');
 //const User = require ('../models/user');
 const { EMAIL_PROVIDER } = require('../constants');
-const rolePermission = require('./rolepermission');
+//const rolePermission = require('./rolepermission');
 
 const { google, facebook } = keys;
 
