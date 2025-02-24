@@ -106,7 +106,7 @@ router.get('/:id', async (req, res) => {
 //update category api 
 router.put('/:id', 
   auth,  
-  role.check('Admin'),
+  role.check(),
   async (req, res) => {
     console.log("PUT /api/category/:id called");  // Debugging
     console.log("User:", req.user);  // Debugging

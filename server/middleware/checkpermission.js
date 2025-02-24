@@ -1,42 +1,42 @@
-const {use} = require('passport');
-const rolePermission = require("../config/rolepermission"); // Import role permissions
+// const {use} = require('passport');
+// const rolePermission = require("../config/rolepermission"); // Import role permissions
 
-const checkPermission = (req, res, next) => {
-    console.log("Request User:", req.user);
-    console.log("User Role:", req.user ? req.user.role : "undefined");
+// const checkPermission = (req, res, next) => {
+//     console.log("Request User:", req.user);
+//     console.log("User Role:", req.user ? req.user.role : "undefined");
     
-    const userRole = req.user.role; // Assuming role is stored in req.user (from authentication middleware)
-    const method = req.method; // GET, POST, PUT, DELETE
-    const path = req.baseUrl + req.path; // Extract full API path
+//     const userRole = req.user.role; // Assuming role is stored in req.user (from authentication middleware)
+//     const method = req.method; // GET, POST, PUT, DELETE
+//     const path = req.baseUrl + req.path; // Extract full API path
 
-    const formattedEndpoint = `${method} ${path}`;
-    //console.log("User Role:", userRole);
-    console.log("Requested Method:", req.method); 
-    console.log("Requested Endpoint:", formattedEndpoint);
+//     const formattedEndpoint = `${method} ${path}`;
+//     //console.log("User Role:", userRole);
+//     console.log("Requested Method:", req.method); 
+//     console.log("Requested Endpoint:", formattedEndpoint);
 
-    const allowedEndpoints = rolePermission[userRole] || [];
-    console.log("Allowed Endpoints:", allowedEndpoints);
+//     const allowedEndpoints = rolePermission[userRole] || [];
+//     console.log("Allowed Endpoints:", allowedEndpoints);
 
-    if (allowedEndpoints.length === 0) {
-        console.error(`⚠️ No API permissions found for role: ${userRole}`);
-      }
+//     if (allowedEndpoints.length === 0) {
+//         console.error(`⚠️ No API permissions found for role: ${userRole}`);
+//       }
 
-    const isAuthorized = allowedEndpoints.some(path => {
-        const pattern = new RegExp(`^${path.replace(/:id/g, "[a-f0-9]{24}")}$`); 
-        return pattern.test(formattedEndpoint);
-    });
+//     const isAuthorized = allowedEndpoints.some(path => {
+//         const pattern = new RegExp(`^${path.replace(/:id/g, "[a-f0-9]{24}")}$`); 
+//         return pattern.test(formattedEndpoint);
+//     });
 
-    console.log("Is Authorized:", isAuthorized);
+//     console.log("Is Authorized:", isAuthorized);
     
-    // Check if role exists in permissions and has access to this endpoint
-    if (rolePermission[userRole] && rolePermission[userRole][formattedEndpoint]) {
-        return next(); // User has permission, proceed to the next middleware
-    } else {
-        return res.status(403).json({ message: "You don't have permission to access this resource." });
-    }
-};
+//     // Check if role exists in permissions and has access to this endpoint
+//     if (rolePermission[userRole] && rolePermission[userRole][formattedEndpoint]) {
+//         return next(); // User has permission, proceed to the next middleware
+//     } else {
+//         return res.status(403).json({ message: "You don't have permission to access this resource." });
+//     }
+// };
 
-module.exports = checkPermission;
+// module.exports = checkPermission;
 
 
 

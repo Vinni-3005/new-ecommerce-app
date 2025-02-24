@@ -35,6 +35,7 @@ const Distributor = ({permissions}) => {
   const componentMap = {
     AccountSecurity : <Account/>,
     products: <Product/>,
+    category:<Category/>,
     brands : <Brand/>,
     reviews:<Review/>,
     createroles: <CreateRoles/>,
