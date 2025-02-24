@@ -18,7 +18,7 @@ import AccountMenu from '../../components/Manager/AccountMenu';
 import { fetchRolesData } from '../CreateRole/actions';
 //import AccountSecurity from '../AccountSecurity';
 
-//import Customer from '../../components/Manager/Dashboard/Customer';
+import Customer from '../../components/Manager/Dashboard/Customer';
 import DisabledMerchantAccount from '../../components/Manager/DisabledAccount/Merchant';
 //import dashboardLinks from './links.json';
 //import { API_URL } from '../../constants';
@@ -80,7 +80,8 @@ class Dashboard extends React.PureComponent {
           <Admin user={user} permissions={roleData.permissions}/>
         ): normalizedRole === ROLES. Distributor ? (
           <Distributor user={user} permissions={roleData.permissions}/>
-        ): null }
+        ): ( <Customer user={user} permissions={roleData.permissions}/>
+        )}
       </>
     )
   }

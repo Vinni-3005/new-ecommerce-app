@@ -28,10 +28,12 @@ import * as assignrole from './containers/AssignRoles/actions';
 import * as users from './containers/Users/actions';
 import * as resetPassword from './containers/ResetPassword/actions';
 import * as ModifyRole from './containers/ModifyRole/actions';
+import * as address from './containers/Address/actions';
+import * as order from './containers/Order/actions';
+//
 
 //import * as cart from './containers/Cart/actions';
 //import * as newsletter from './containers/Newsletter/actions';
-//import * as address from './containers/Address/actions';
 //
 //
 //
@@ -39,7 +41,7 @@ import * as ModifyRole from './containers/ModifyRole/actions';
 //
 //import * as merchant from './containers/Merchant/actions';
 //
-//import * as order from './containers/Order/actions';
+//
 //
 //
 
@@ -68,11 +70,13 @@ export default function mapDispatchToProps(dispatch) {
       ...assignrole,
       ...resetPassword,
       ...ModifyRole,
+      ...address,
+      ...order,
 
 
       //...cart,
       //...newsletter,
-      //...address,
+      //
       //
       //
       //
@@ -80,7 +84,7 @@ export default function mapDispatchToProps(dispatch) {
       //
       //...merchant,
       //
-      //...order,
+      //
       //
       //
     },
