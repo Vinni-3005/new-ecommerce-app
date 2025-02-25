@@ -16,7 +16,7 @@ const { API_URL } = require('../../constants/constant');
 
 
 //listof category
-router.post('category/list', auth, role.check('Admin'), (req, res) => {
+router.post('category/list', auth, role.check(), (req, res) => {
   const name = req.body.name;
   const description = req.body.description;
   const products = req.body.products;
@@ -141,7 +141,7 @@ router.put('/:id',
 });
 
 //update active category api
-router.put('/:id/active', auth, role.check('Admin'),
+router.put('/:id/active', auth, role.check(),
 async (req, res) => {
   try {
     const categoryId = req.params.id;
@@ -176,7 +176,7 @@ async (req, res) => {
 router.delete(
   '/delete/:id',
   auth,
-  role.check('Admin'),
+  role.check(),
   async (req, res) => {
     try {
       const product = await Category.deleteOne({ _id: req.params.id });

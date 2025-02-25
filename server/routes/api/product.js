@@ -22,6 +22,7 @@ const upload = multer({ storage });
 const { API_URL } = require('../../constants/constant');
 //const checkPermission = require('../../middleware/checkpermission');
 //const { API_URL } = require('../../../client/src/constants/constant');
+
 // fetch product slug api
 router.get('/item/:slug', async (req, res) => {
   try {
@@ -181,7 +182,7 @@ router.get('/brand/list/select', auth, async (req, res) => {
 router.post(
   '/add',
   auth,
-  role.check( 'Admin'), 
+  role.check(), 
   upload.single('image'),
   async (req, res) => {
     try {
@@ -253,7 +254,7 @@ router.post(
 router.get(
   '/',
   auth,
-  role.check('Admin','Distributor'),
+  role.check(),
   async (req, res) => {
     try {
       let products = [];
@@ -299,7 +300,7 @@ router.get(
 router.get(
   '/product/:id',
   auth,
-  role.check('Admin', 'Distributor'),
+  role.check(),
   async (req, res) => {
     try {
       const productId = req.params.id;
@@ -348,7 +349,7 @@ router.get(
 router.put(
   '/:id',
   auth,
-  role.check('Admin', ROLES.Distributor),
+  role.check(),
   async (req, res) => {
     try {
       const productId = req.params.id;
@@ -387,7 +388,7 @@ router.put(
 router.put(
   '/:id/active',
   auth,
-  role.check('Admin', ROLES.Distributor),
+  role.check(),
   async (req, res) => {
     try {
       const productId = req.params.id;
@@ -415,7 +416,7 @@ router.put(
 router.delete(
   '/delete/:id',
   auth,
-  role.check('Admin'),
+  role.check(),
   async (req, res) => {
     try {
       const product = await Product.deleteOne({ _id: req.params.id });

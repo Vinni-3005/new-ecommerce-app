@@ -45,6 +45,11 @@ const CreateRole = () => {
   };
 
   const handleSubmit = async () => {
+    if (!roleName.trim()) {
+      alert('Role name cannot be empty!'); // Pop-up alert
+      return;
+    }
+
     const selectedPermissions = Object.keys(permissions).filter(
       (key) => permissions[key]
     );
